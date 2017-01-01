@@ -11,6 +11,16 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('signup');
+});
+
+Route::get('/signup', function (Request $request) {
+    return view('signup');
+})->name('signup');
+
+Route::post('/signup', function (Request $request) {
+    var_dump($request);
 });
