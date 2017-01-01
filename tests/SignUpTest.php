@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SignUpTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * User can successfully sign up
      *
