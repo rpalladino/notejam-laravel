@@ -39,6 +39,7 @@
     </div>
     <div class="thirteen columns content-area">
       <form class="offset-by-six sign-in" method="post">
+        {{ csrf_field() }}
         <label for="email">Email</label>
         <input type="text" id="email" name="email">
         <label for="password">Password</label>
