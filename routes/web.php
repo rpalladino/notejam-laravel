@@ -23,10 +23,7 @@ Route::get('/signup', function (Request $request) {
 })->name('signup');
 
 Route::post('/signup', function (Request $request) {
-    $user = new User();
-    $user->email = $request->email;
-    $user->password = $request->password;
-    $user->save();
+    $user = User::create($request->toArray());
 
     return redirect()
         ->route('signin')
