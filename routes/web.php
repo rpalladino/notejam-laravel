@@ -11,6 +11,7 @@
 |
 */
 
+use App\User;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -22,5 +23,17 @@ Route::get('/signup', function (Request $request) {
 })->name('signup');
 
 Route::post('/signup', function (Request $request) {
-    var_dump($request);
+    $user = new User();
+    $user->email = $request->email;
+    $user->name = $request->email;
+    $user->password = $request->password;
+    $user->save();
+
+    return redirect()
+        ->route('signin')
+        ->with('signup_success', 'Account successfully created!');
 });
+
+Route::get('/signin', function () {
+    return view('signin');
+})->name('signin');
