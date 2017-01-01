@@ -25,7 +25,6 @@ Route::get('/signup', function (Request $request) {
 Route::post('/signup', function (Request $request) {
     $user = new User();
     $user->email = $request->email;
-    $user->name = $request->email;
     $user->password = $request->password;
     $user->save();
 
