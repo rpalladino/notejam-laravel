@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\SignupRequest;
+use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
@@ -17,7 +18,7 @@ class SignupController extends Controller
     {
         $user = User::create([
             'email' => $request->email,
-            'password' => password_hash($request->password, PASSWORD_BCRYPT)
+            'password' => Hash::make($request->password)
         ]);
 
         return redirect()

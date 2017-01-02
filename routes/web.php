@@ -12,11 +12,12 @@
 */
 
 use App\User;
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('index');
 })->name('all_notes');
 
+Route::get('/signin', 'User\SigninController@showSigninForm')->name('signin');
+Route::post('/signin', 'User\SigninController@signin');
 Route::get('/signup', 'User\SignupController@showSignupForm')->name('signup');
 Route::post('/signup', 'User\SignupController@signup');
