@@ -18,17 +18,8 @@ Route::get('/', function () {
     return redirect()->route('signup');
 });
 
-Route::get('/signup', function (Request $request) {
-    return view('signup');
-})->name('signup');
-
-Route::post('/signup', function (Request $request) {
-    $user = User::create($request->toArray());
-
-    return redirect()
-        ->route('signin')
-        ->with('signup_success', 'Account successfully created!');
-});
+Route::get('/signup', 'User\SignupController@showSignupForm')->name('signup');
+Route::post('/signup', 'User\SignupController@signup');
 
 Route::get('/signin', function () {
     return view('signin');
