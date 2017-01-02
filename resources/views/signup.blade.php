@@ -41,7 +41,7 @@
       <form class="offset-by-six sign-in" method="post">
         {{ csrf_field() }}
         <label for="email">Email</label>
-        <input type="text" id="email" name="email">
+        <input type="text" id="email" name="email" value="{{ old('email') }}">
         @if ($errors->has('email'))
             <ul class="errorlist">
                 <li>
