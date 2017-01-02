@@ -43,6 +43,27 @@ class SignUpTest extends TestCase
 
     }
 
+    /**
+     * User can't sign up if email is invalid
+     *
+     * @return void
+     */
+    public function testUserCantSignUpIfEmailIsInvalid()
+    {
+        $this->visit('/signup')
+             ->type('jsmith', 'email')
+             ->type('a-bad-password', 'password')
+             ->type('a-bad-password', 'confirm_password')
+             ->press('Sign Up')
+             ->see('The email must be a valid email address')
+             ->userWasNotCreated();
+    }
+
+    /**
+     * Verify that a user was not created in the database
+     *
+     * @return void
+     */
     protected function userWasNotCreated()
     {
         $this->assertEquals(0, App\User::all()->count());
