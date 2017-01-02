@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\User\SigninRequest;
 use Illuminate\Support\Facades\Auth;
 
 class SigninController extends Controller
@@ -13,7 +13,7 @@ class SigninController extends Controller
         return view('signin');
     }
 
-    public function signin(Request $request)
+    public function signin(SigninRequest $request)
     {
         $email = $request->email;
         $password = $request->password;

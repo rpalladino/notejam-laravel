@@ -27,4 +27,18 @@ class SignInTest extends TestCase
              ->press('Sign In')
              ->seeRouteIs('all_notes');
     }
+
+    /**
+     * User can't sign in if required fields are missing
+     *
+     * @return void
+     */
+    public function testUserCantSignInIfRequiredFieldsAreMissing()
+    {
+        $this->visit('/signin')
+             ->press('Sign In')
+             ->see('The email field is required')
+             ->see('The password field is required')
+             ->seeRouteIs('signin');
+    }
 }
