@@ -19,7 +19,7 @@ class SignUpTest extends TestCase
              ->see('Sign Up')
              ->type('jsmith@example.com', 'email')
              ->type('a-bad-password', 'password')
-             ->type('a-bad-password', 'confirm-password')
+             ->type('a-bad-password', 'confirm_password')
              ->press('Sign Up')
              ->see('Account successfully created!')
              ->seeInDatabase('users', [

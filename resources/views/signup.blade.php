@@ -45,7 +45,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password">
         <label for="confirm-password">Confirm password</label>
-        <input type="password" id="confirm-password" name="confirm-password">
+        <input type="password" id="confirm-password" name="confirm_password">
         <input type="submit" value="Sign Up" name="Sign Up"> or <a href='#'>Sign in</a>
       </form>
     </div>
