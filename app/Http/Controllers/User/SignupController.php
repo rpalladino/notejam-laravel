@@ -18,7 +18,7 @@ class SignupController extends Controller
         $user = User::create($request->toArray());
 
         return redirect()
-            ->route('signin')
+            ->route('all_notes')
             ->with('signup_success', 'Account successfully created!');
     }
 }

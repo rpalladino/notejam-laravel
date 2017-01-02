@@ -15,12 +15,8 @@ use App\User;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    return redirect()->route('signup');
-});
+    return view('index');
+})->name('all_notes');
 
 Route::get('/signup', 'User\SignupController@showSignupForm')->name('signup');
 Route::post('/signup', 'User\SignupController@signup');
-
-Route::get('/signin', function () {
-    return view('signin');
-})->name('signin');
