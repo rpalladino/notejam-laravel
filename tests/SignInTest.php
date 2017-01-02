@@ -41,4 +41,19 @@ class SignInTest extends TestCase
              ->see('The password field is required')
              ->seeRouteIs('signin');
     }
+
+    /**
+     * User can't sign in if credentials are wrong
+     *
+     * @return void
+     */
+    public function testUserCantSignInIfCredentialsAreWrong()
+    {
+        $this->visit('/signin')
+             ->type('jsmith@gmail.com', 'email')
+             ->type('secure-password', 'password')
+             ->press('Sign In')
+             ->see('Wrong password or email')
+             ->seeRouteIs('signin');
+    }
 }

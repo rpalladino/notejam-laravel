@@ -3,9 +3,11 @@
 @section('title', 'Sign In')
 
 @section('content')
-  <!--<div class="alert-area">-->
-  <!--<div class="alert alert-error">Wrong password or email</div>-->
-  <!--</div>-->
+  @if (session('attempt-failed'))
+    <div class="alert-area">
+      <div class="alert alert-error">Wrong password or email</div>
+    </div>
+  @endif
   <form class="offset-by-six sign-in" method="post">
     {{ csrf_field() }}
     <label for="email">Email</label>

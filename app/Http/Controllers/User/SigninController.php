@@ -21,5 +21,7 @@ class SigninController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             return redirect()->intended();
         }
+
+        return redirect()->route('signin')->with('attempt-failed', true);
     }
 }
