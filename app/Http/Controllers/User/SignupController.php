@@ -15,6 +15,9 @@ class SignupController extends Controller
 
     public function signup(Request $request)
     {
+        $request->merge([
+            'password' => password_hash($request->password, PASSWORD_BCRYPT)
+        ]);
         $user = User::create($request->toArray());
 
         return redirect()
