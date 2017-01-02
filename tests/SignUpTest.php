@@ -19,7 +19,7 @@ class SignUpTest extends TestCase
              ->see('Sign Up')
              ->type('jsmith@example.com', 'email')
              ->type('a-bad-password', 'password')
-             ->type('a-bad-password', 'confirm_password')
+             ->type('a-bad-password', 'password_confirmation')
              ->press('Sign Up')
              ->see('Account successfully created!')
              ->seeInDatabase('users', [
@@ -38,7 +38,7 @@ class SignUpTest extends TestCase
              ->press('Sign Up')
              ->see('The email field is required')
              ->see('The password field is required')
-             ->see('The confirm password field is required')
+             ->see('The password confirmation field is required')
              ->userWasNotCreated();
 
     }
@@ -53,7 +53,7 @@ class SignUpTest extends TestCase
         $this->visit('/signup')
              ->type('jsmith', 'email')
              ->type('a-bad-password', 'password')
-             ->type('a-bad-password', 'confirm_password')
+             ->type('a-bad-password', 'password_confirmation')
              ->press('Sign Up')
              ->see('The email must be a valid email address')
              ->userWasNotCreated();
@@ -71,10 +71,26 @@ class SignUpTest extends TestCase
         $this->visit('/signup')
              ->type('jsmith@example.com', 'email')
              ->type('a-bad-password', 'password')
-             ->type('a-bad-password', 'confirm_password')
+             ->type('a-bad-password', 'password_confirmation')
              ->press('Sign Up')
              ->see('The email has already been taken')
              ->userWasNotCreated(1);
+    }
+
+    /**
+     * User can't sign up if passwords do not match
+     *
+     * @return void
+     */
+    public function testUserCantSignUpIfPasswordsDoNotMatch()
+    {
+        $this->visit('/signup')
+             ->type('jsmith@example.com', 'email')
+             ->type('a-secure-password', 'password')
+             ->type('a-mismatched-password', 'password_confirmation')
+             ->press('Sign Up')
+             ->see('The password confirmation does not match')
+             ->userWasNotCreated();
     }
 
     /**

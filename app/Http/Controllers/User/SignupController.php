@@ -17,8 +17,8 @@ class SignupController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'confirm_password' => 'required'
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required'
         ]);
 
         $request->merge([

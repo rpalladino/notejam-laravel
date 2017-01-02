@@ -59,11 +59,11 @@
             </ul>
         @endif
         <label for="confirm-password">Confirm password</label>
-        <input type="password" id="confirm-password" name="confirm_password">
-        @if ($errors->has('confirm_password'))
+        <input type="password" id="confirm-password" name="password_confirmation">
+        @if ($errors->has('password_confirmation'))
             <ul class="errorlist">
                 <li>
-                    {{ $errors->first('confirm_password') }}
+                    {{ $errors->first('password_confirmation') }}
                 </li>
             </ul>
         @endif
