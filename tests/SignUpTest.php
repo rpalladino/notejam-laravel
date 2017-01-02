@@ -26,4 +26,25 @@ class SignUpTest extends TestCase
                  'email' => 'jsmith@example.com'
              ]);
     }
+
+    /**
+     * User can't sign up if required fields are missing
+     *
+     * @return void
+     */
+    public function testUserCantSignUpIfRequiredFieldsAreMissing()
+    {
+        $this->visit('/signup')
+             ->press('Sign Up')
+             ->see('The email field is required')
+             ->see('The password field is required')
+             ->see('The confirm password field is required')
+             ->userWasNotCreated();
+
+    }
+
+    protected function userWasNotCreated()
+    {
+        $this->assertEquals(0, App\User::all()->count());
+    }
 }

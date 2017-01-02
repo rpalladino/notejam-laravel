@@ -42,10 +42,31 @@
         {{ csrf_field() }}
         <label for="email">Email</label>
         <input type="text" id="email" name="email">
+        @if ($errors->has('email'))
+            <ul class="errorlist">
+                <li>
+                    {{ $errors->first('email') }}
+                </li>
+            </ul>
+        @endif
         <label for="password">Password</label>
         <input type="password" id="password" name="password">
+        @if ($errors->has('password'))
+            <ul class="errorlist">
+                <li>
+                    {{ $errors->first('password') }}
+                </li>
+            </ul>
+        @endif
         <label for="confirm-password">Confirm password</label>
         <input type="password" id="confirm-password" name="confirm_password">
+        @if ($errors->has('confirm_password'))
+            <ul class="errorlist">
+                <li>
+                    {{ $errors->first('confirm_password') }}
+                </li>
+            </ul>
+        @endif
         <input type="submit" value="Sign Up" name="Sign Up"> or <a href='#'>Sign in</a>
       </form>
     </div>

@@ -15,6 +15,12 @@ class SignupController extends Controller
 
     public function signup(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+            'confirm_password' => 'required'
+        ]);
+
         $request->merge([
             'password' => password_hash($request->password, PASSWORD_BCRYPT)
         ]);
