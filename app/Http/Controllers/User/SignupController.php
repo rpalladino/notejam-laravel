@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\User\SignupRequest;
 
 class SignupController extends Controller
 {
@@ -13,14 +13,8 @@ class SignupController extends Controller
         return view('signup');
     }
 
-    public function signup(Request $request)
+    public function signup(SignupRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required'
-        ]);
-
         $request->merge([
             'password' => password_hash($request->password, PASSWORD_BCRYPT)
         ]);
