@@ -15,10 +15,10 @@ class SignupController extends Controller
 
     public function signup(SignupRequest $request)
     {
-        $request->merge([
+        $user = User::create([
+            'email' => $request->email,
             'password' => password_hash($request->password, PASSWORD_BCRYPT)
         ]);
-        $user = User::create($request->toArray());
 
         return redirect()
             ->route('all_notes')
