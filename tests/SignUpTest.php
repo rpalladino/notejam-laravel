@@ -60,12 +60,31 @@ class SignUpTest extends TestCase
     }
 
     /**
+     * User can't sign up if email already exists
+     */
+    public function testUserCantSignupIfEmailAlreadyExists()
+    {
+        $user = factory(App\User::class)->create([
+            'email' => 'jsmith@example.com',
+        ]);
+
+        $this->visit('/signup')
+             ->type('jsmith@example.com', 'email')
+             ->type('a-bad-password', 'password')
+             ->type('a-bad-password', 'confirm_password')
+             ->press('Sign Up')
+             ->see('The email has already been taken')
+             ->userWasNotCreated(1);
+    }
+
+    /**
      * Verify that a user was not created in the database
      *
+     * @param $existing The number of any existing users
      * @return void
      */
-    protected function userWasNotCreated()
+    protected function userWasNotCreated($existing = 0)
     {
-        $this->assertEquals(0, App\User::all()->count());
+        $this->assertEquals($existing, App\User::all()->count());
     }
 }
