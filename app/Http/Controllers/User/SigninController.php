@@ -24,4 +24,15 @@ class SigninController extends Controller
 
         return redirect()->route('signin')->with('attempt-failed', true);
     }
+
+    public function signout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+
+            return redirect()->route('signin')->with('signed-out', true);
+        }
+
+        return redirect()->route('signin');
+    }
 }

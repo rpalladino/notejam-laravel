@@ -56,4 +56,19 @@ class SignInTest extends TestCase
              ->see('Wrong password or email')
              ->seeRouteIs('signin');
     }
+
+    /**
+     * User can successfully sign out
+     *
+     * @return void
+     */
+    public function testUserCanSuccessfullySignOut()
+    {
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+             ->visit('/signout')
+             ->seeRouteIs('signin')
+             ->see('You have signed out');
+    }
 }

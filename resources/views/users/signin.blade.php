@@ -3,9 +3,14 @@
 @section('title', 'Sign In')
 
 @section('content')
-  @if (session('attempt-failed'))
+  @if (session('attempt-failed') || session('signed-out'))
     <div class="alert-area">
-      <div class="alert alert-error">Wrong password or email</div>
+      @if (session('attempt-failed'))
+        <div class="alert alert-error">Wrong password or email.</div>
+      @endif
+      @if (session('signed-out'))
+        <div class="alert alert-success">You have signed out.</div>
+      @endif
     </div>
   @endif
   <form class="offset-by-six sign-in" method="post">
