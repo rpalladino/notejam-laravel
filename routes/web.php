@@ -14,7 +14,7 @@
 use App\User;
 
 Route::get('/', function () {
-    return view('index');
+    return view('notes.all_notes');
 })->name('all_notes')->middleware('auth');
 
 Route::get('/signin', 'User\SigninController@showSigninForm')->name('signin');
