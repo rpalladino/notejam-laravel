@@ -21,6 +21,7 @@ class SignUpTest extends TestCase
              ->type('a-bad-password', 'password')
              ->type('a-bad-password', 'password_confirmation')
              ->press('Sign Up')
+             ->seeRouteIs('all_notes')
              ->see('Account successfully created!')
              ->seeInDatabase('users', [
                  'email' => 'jsmith@example.com'
@@ -36,6 +37,7 @@ class SignUpTest extends TestCase
     {
         $this->visit('/signup')
              ->press('Sign Up')
+             ->seeRouteIs('signup')
              ->see('The email field is required')
              ->see('The password field is required')
              ->see('The password confirmation field is required')
@@ -55,6 +57,7 @@ class SignUpTest extends TestCase
              ->type('a-bad-password', 'password')
              ->type('a-bad-password', 'password_confirmation')
              ->press('Sign Up')
+             ->seeRouteIs('signup')
              ->see('The email must be a valid email address')
              ->userWasNotCreated();
     }
@@ -73,6 +76,7 @@ class SignUpTest extends TestCase
              ->type('a-bad-password', 'password')
              ->type('a-bad-password', 'password_confirmation')
              ->press('Sign Up')
+             ->seeRouteIs('signup')
              ->see('The email has already been taken')
              ->userWasNotCreated(1);
     }
@@ -89,6 +93,7 @@ class SignUpTest extends TestCase
              ->type('a-secure-password', 'password')
              ->type('a-mismatched-password', 'password_confirmation')
              ->press('Sign Up')
+             ->seeRouteIs('signup')
              ->see('The password confirmation does not match')
              ->userWasNotCreated();
     }
