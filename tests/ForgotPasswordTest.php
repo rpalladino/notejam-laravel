@@ -25,13 +25,12 @@ class ForgotPasswordTest extends TestCase
              ->assertPasswordWasReset($user);
     }
 
-
     /**
-     * User can't generate new password if required email field is missing
+     * User can't generate new password if email is missing
      *
      * @return void
      */
-    public function testUserCantGeneratePasswordIfRequiredEmailIsMising()
+    public function testUserCantGeneratePasswordIfEmailIsMising()
     {
         $this->visit('/forgot-password')
              ->press('Generate password')
@@ -39,6 +38,18 @@ class ForgotPasswordTest extends TestCase
              ->see('The email field is required');
     }
 
+    /**
+     * User can't generate new password if email is invalid
+     *
+     * @return void
+     */
+    public function testUserCantGeneratePasswordIfEmailIsInvalid()
+    {
+        $this->visit('/forgot-password')
+             ->type('jsmith#example.com', 'email')
+             ->press('Generate password')
+             ->see('The email must be a valid email address');
+    }
 
     private function assertPasswordWasReset($user)
     {
