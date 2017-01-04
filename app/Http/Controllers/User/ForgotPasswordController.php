@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Mail\User\ForgotPassword;
+use App\Http\Requests\User\ForgotPasswordRequest;
+use App\Mail\User\ForgotPasswordMail;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
@@ -15,16 +15,12 @@ class ForgotPasswordController extends Controller
         return view('users.forgot-password');
     }
 
-    public function forgotPassword(Request $request)
+    public function forgotPassword(ForgotPasswordRequest $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email'
-        ]);
-
         $user = User::where(['email' => $request->email])->first();
         $newPassword = $user->regeneratePassword();
 
-        Mail::to($user)->send(new ForgotPassword($newPassword));
+        Mail::to($user)->send(new ForgotPasswordMail($newPassword));
 
         return redirect()
             ->route('forgot-password')

@@ -51,6 +51,19 @@ class ForgotPasswordTest extends TestCase
              ->see('The email must be a valid email address');
     }
 
+    /**
+     * User can't generate password if email is not found
+     *
+     * @return void
+     */
+    public function testUserCantGeneratePasswordIfEmailIsNotFound()
+    {
+        $this->visit('/forgot-password')
+             ->type('sally@example.com', 'email')
+             ->press('Generate password')
+             ->see('No user with given email found');
+    }
+
     private function assertPasswordWasReset($user)
     {
         $oldPassword = $user->password;
