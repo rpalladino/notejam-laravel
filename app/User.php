@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Generate a new password for the user and persist as a hash
+     *
+     * @return string The users's new password
+     */
+    public function regeneratePassword()
+    {
+        $newPassword = bin2hex(random_bytes(8));
+
+        $this->password = Hash::make($newPassword);
+        $this->save();
+
+        return $newPassword;
+    }
 }
