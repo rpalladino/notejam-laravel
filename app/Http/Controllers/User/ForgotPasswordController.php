@@ -17,6 +17,10 @@ class ForgotPasswordController extends Controller
 
     public function forgotPassword(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required'
+        ]);
+
         $user = User::where(['email' => $request->email])->first();
         $newPassword = $user->regeneratePassword();
 

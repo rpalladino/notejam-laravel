@@ -33,8 +33,8 @@
             </li>
         </ul>
     @endif
-    <input type="submit" value="Sign In"> or <a href="#signup">Sign up</a>
+    <input type="submit" value="Sign In"> or <a href="{{ URL::route('signup') }}">Sign up</a>
     <hr />
-    <p><a href="#forgot-password" class="small-red">Forgot password?</a></p>
+    <p><a href="{{ URL::route('forgot-password') }}" class="small-red">Forgot password?</a></p>
   </form>
 @endsection

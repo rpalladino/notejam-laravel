@@ -32,6 +32,6 @@
             </li>
         </ul>
     @endif
-    <input type="submit" value="Sign Up" name="Sign Up"> or <a href='#'>Sign in</a>
+    <input type="submit" value="Sign Up" name="Sign Up"> or <a href="{{ URL::route('signin') }}">Sign in</a>
   </form>
 @endsection
