@@ -17,22 +17,10 @@
     {{ csrf_field() }}
     <label for="email">Email</label>
     <input type="text" id="email" name="email">
-    @if ($errors->has('email'))
-        <ul class="errorlist">
-            <li>
-                {{ $errors->first('email') }}
-            </li>
-        </ul>
-    @endif
+    @include('partials.field_error', ['field' => 'email'])
     <label for="password">Password</label>
     <input type="password" id="password" name="password">
-    @if ($errors->has('password'))
-        <ul class="errorlist">
-            <li>
-                {{ $errors->first('password') }}
-            </li>
-        </ul>
-    @endif
+    @include('partials.field_error', ['field' => 'password'])
     <input type="submit" value="Sign In"> or <a href="{{ URL::route('signup') }}">Sign up</a>
     <hr />
     <p><a href="{{ URL::route('forgot-password') }}" class="small-red">Forgot password?</a></p>

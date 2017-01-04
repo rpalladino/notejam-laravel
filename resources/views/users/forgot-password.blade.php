@@ -12,13 +12,7 @@
     {{ csrf_field() }}
     <label for="email">Email</label>
     <input type="text" id="email" name="email">
-    @if ($errors->has('email'))
-        <ul class="errorlist">
-            <li>
-                {{ $errors->first('email') }}
-            </li>
-        </ul>
-    @endif
+    @include('partials.field_error', ['field' => 'email'])
     <input type="submit" value="Generate password">
   </form>
 @endsection
