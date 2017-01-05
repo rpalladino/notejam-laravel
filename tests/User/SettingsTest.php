@@ -65,6 +65,21 @@ class SettingsTest extends TestCase
     }
 
     /**
+     * User can't change settings if new passwords do not match
+     *
+     * @return void
+     */
+    public function testUserCantChangeSettingsIfNewPasswordsDoNotMatch()
+    {
+        $this->visit('/settings')
+             ->type('original-password', 'current_password')
+             ->type('new-password-1', 'new_password')
+             ->type('new-password-2', 'new_password_confirmation')
+             ->press('Save')
+             ->see('The new password confirmation does not match');
+    }
+
+    /**
      * Assert that the user password was changed
      *
      * @param  App\User $user

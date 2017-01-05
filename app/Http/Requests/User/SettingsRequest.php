@@ -25,7 +25,7 @@ class SettingsRequest extends FormRequest
     {
         return [
             'current_password' => 'required',
-            'new_password' => 'required',
+            'new_password' => 'required|confirmed',
             'new_password_confirmation' => 'required'
         ];
     }
