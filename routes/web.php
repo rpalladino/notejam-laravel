@@ -18,10 +18,17 @@ Route::get('/', function () {
 })->name('all_notes')->middleware('auth');
 
 
-Route::get('/forgot-password', 'User\ForgotPasswordController@showForgotPasswordForm')->name('forgot-password');
+Route::get('/forgot-password', 'User\ForgotPasswordController@showForgotPasswordForm')
+     ->name('forgot-password');
 Route::post('/forgot-password', 'User\ForgotPasswordController@forgotPassword');
-Route::get('/signin', 'User\SigninController@showSigninForm')->name('signin');
+Route::get('/settings', 'User\SettingsController@showUserSettingsForm')
+     ->name('settings');
+Route::post('/settings', 'User\SettingsController@changeUserSettings');
+Route::get('/signin', 'User\SigninController@showSigninForm')
+     ->name('signin');
 Route::post('/signin', 'User\SigninController@signin');
-Route::get('/signout', 'User\SigninController@signout')->name('signout');
-Route::get('/signup', 'User\SignupController@showSignupForm')->name('signup');
+Route::get('/signout', 'User\SigninController@signout')
+     ->name('signout');
+Route::get('/signup', 'User\SignupController@showSignupForm')
+     ->name('signup');
 Route::post('/signup', 'User\SignupController@signup');

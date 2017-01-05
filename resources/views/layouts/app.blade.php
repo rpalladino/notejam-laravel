@@ -32,7 +32,7 @@
     <div class="sixteen columns">
       <div class="sign-in-out-block">
         @if(Auth::check())
-          {{ Auth::user()->email }}:&nbsp; <a href="#">Account settings</a>&nbsp;&nbsp;&nbsp;<a href="{{ URL::route('signout') }}">Sign out</a>
+          {{ Auth::user()->email }}:&nbsp; <a href="{{ URL::route('settings') }}">Account settings</a>&nbsp;&nbsp;&nbsp;<a href="{{ URL::route('signout') }}">Sign out</a>
         @else
           <a href="{{ URL::route('signup') }}">Sign up</a>&nbsp;&nbsp;&nbsp;<a href="{{ URL::route('signin') }}">Sign in</a>
         @endif

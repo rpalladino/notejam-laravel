@@ -36,10 +36,19 @@ class User extends Authenticatable
     public function regeneratePassword()
     {
         $newPassword = bin2hex(random_bytes(8));
-
-        $this->password = Hash::make($newPassword);
-        $this->save();
+        $this->changePassword($newPassword);
 
         return $newPassword;
+    }
+
+    /**
+     * Change password, saved as a hash
+     *
+     * @return void
+     */
+    public function changePassword($newPassword)
+    {
+        $this->password = Hash::make($newPassword);
+        $this->save();
     }
 }
