@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\SettingsRequest;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
@@ -31,6 +32,17 @@ class SettingsController extends Controller
      */
     public function changeUserSettings(SettingsRequest $request)
     {
+        $currentCredentials = [
+            'email' => $request->user()->email,
+            'password' => $request->current_password
+        ];
+
+        if (! Auth::attempt($currentCredentials)) {
+            return redirect()
+                ->route('settings')
+                ->with('invalid-password', true);
+        }
+
         $user = User::where(['email' => $request->user()->email])->first();
         $user->changePassword($request->new_password);
 

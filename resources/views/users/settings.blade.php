@@ -6,6 +6,11 @@
       <div class="alert alert-success">Password is successfully changed</div>
     </div>
   @endif
+  @if (session('invalid-password'))
+    <div class="alert-area">
+      <div class="alert alert-error">Invalid current password</div>
+    </div>
+  @endif
   <form class="offset-by-six sign-in" method="post">
     {{ csrf_field() }}
     <label for="current-password">Current password</label>
