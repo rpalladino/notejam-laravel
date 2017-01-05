@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\SettingsRequest;
 use App\User;
-use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
@@ -29,7 +29,7 @@ class SettingsController extends Controller
      * @param  Request $request
      * @return Illuminate\Http\Response
      */
-    public function changeUserSettings(Request $request)
+    public function changeUserSettings(SettingsRequest $request)
     {
         $user = User::where(['email' => $request->user()->email])->first();
         $user->changePassword($request->new_password);

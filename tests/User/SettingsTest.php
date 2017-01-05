@@ -9,6 +9,16 @@ class SettingsTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->user = factory(App\User::class)->create([
+            'password' => Hash::make('original-password')
+        ]);
+        $this->actingAs($this->user);
+    }
+
     /**
      * User can successfully change settings
      *
@@ -16,18 +26,22 @@ class SettingsTest extends TestCase
      */
     public function testUserCanSuccessfullyChangeSettings()
     {
-        $user = factory(App\User::class)->create([
-            'password' => Hash::make('original-password')
-        ]);
-
-        $this->actingAs($user)
-             ->visit('/settings')
+        $this->visit('/settings')
              ->type('original-password', 'current_password')
              ->type('new-password', 'new_password')
              ->type('new-password', 'new_password_confirmation')
              ->press('Save')
              ->see('Password is successfully changed')
-             ->assertPasswordWasChanged($user);
+             ->assertPasswordWasChanged();
+    }
+
+    public function testUserCantChangeSettingsIfRequiredFieldsMissing()
+    {
+        $this->visit('/settings')
+             ->press('Save')
+             ->see('The current password field is required')
+             ->see('The new password field is required')
+             ->see('The new password confirmation field is required');
     }
 
     /**
@@ -36,10 +50,10 @@ class SettingsTest extends TestCase
      * @param  App\User $user
      * @return void
      */
-    private function assertPasswordWasChanged(App\User $user)
+    private function assertPasswordWasChanged()
     {
-        $oldPassword = $user->password;
-        $user = App\User::where('email', $user->email)->first();
+        $oldPassword = $this->user->password;
+        $user = App\User::where('email', $this->user->email)->first();
         $this->assertNotEquals($oldPassword, $user->password);
     }
 }
