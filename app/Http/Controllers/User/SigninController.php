@@ -22,7 +22,9 @@ class SigninController extends Controller
             return redirect()->intended();
         }
 
-        return redirect()->route('signin')->with('attempt-failed', true);
+        return redirect()
+          ->route('signin')
+          ->with('error', 'Wrong password or email.');
     }
 
     public function signout()
@@ -30,7 +32,9 @@ class SigninController extends Controller
         if (Auth::check()) {
             Auth::logout();
 
-            return redirect()->route('signin')->with('signed-out', true);
+            return redirect()
+                ->route('signin')
+                ->with('success', 'You have signed out.');
         }
 
         return redirect()->route('signin');

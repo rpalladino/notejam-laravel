@@ -56,14 +56,7 @@
       </nav>
     </div>
     <div class="thirteen columns content-area">
-      <div class="alert-area">
-        <!--<div class="alert alert-success">Note is sucessfully saved</div>-->
-        @if(session('signup_success'))
-          <div class="alert alert-success">
-            {{ session('signup_success') }}
-          </div>
-        @endif
-      </div>
+      @include('partials.alerts')
       <table class="notes">
         <tr>
           <th class="note">Note <a href="#" class="sort_arrow" >&uarr;</a><a href="#" class="sort_arrow" >&darr;</a></th>

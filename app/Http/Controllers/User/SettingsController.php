@@ -40,7 +40,7 @@ class SettingsController extends Controller
         if (! Auth::attempt($currentCredentials)) {
             return redirect()
                 ->route('settings')
-                ->with('invalid-password', true);
+                ->with('error', 'Invalid current password');
         }
 
         $user = User::where(['email' => $request->user()->email])->first();
@@ -48,6 +48,6 @@ class SettingsController extends Controller
 
         return redirect()
             ->route('settings')
-            ->with('settings-changed', true);
+            ->with('success', 'Password is successfully changed');
     }
 }

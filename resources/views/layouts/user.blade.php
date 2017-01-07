@@ -42,6 +42,7 @@
       <h1 class="bold-header"><a href="#" class="header">note<span class="jam">jam:</span></a> <span> @yield('title')</span></h1>
     </div>
     <div class="sixteen columns content-area">
+      @include('partials.alerts')
       @yield('content')
     </div>
     <hr class="footer" />

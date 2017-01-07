@@ -24,6 +24,6 @@ class ForgotPasswordController extends Controller
 
         return redirect()
             ->route('forgot-password')
-            ->with('password-generated', true);
+            ->with('success', 'New password sent to your email');
     }
 }

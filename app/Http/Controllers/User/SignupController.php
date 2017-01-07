@@ -26,6 +26,6 @@ class SignupController extends Controller
 
         return redirect()
             ->route('all_notes')
-            ->with('signup_success', 'Account successfully created!');
+            ->with('success', 'Account successfully created!');
     }
 }
