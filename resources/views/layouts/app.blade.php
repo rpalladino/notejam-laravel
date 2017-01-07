@@ -42,76 +42,11 @@
       <h1 class="bold-header"><a href="#" class="header">note<span class="jam">jam:</span></a> <span> @yield('title')</span></h1>
     </div>
     <div class="three columns">
-      <h4 id="logo">My pads</h4>
-      <nav>
-      <ul>
-        <li><a href="#whatAndWhy">Business</a></li>
-        <li><a href="#grid">Personal</a></li>
-        <li><a href="#typography">Sport</a></li>
-        <li><a href="#buttons">Diary</a></li>
-        <li><a href="#forms">Drafts</a></li>
-      </ul>
-      <hr />
-      <a href="#">New pad</a>
-      </nav>
+      @include('partials.pads')
     </div>
     <div class="thirteen columns content-area">
       @include('partials.alerts')
-      <table class="notes">
-        <tr>
-          <th class="note">Note <a href="#" class="sort_arrow" >&uarr;</a><a href="#" class="sort_arrow" >&darr;</a></th>
-          <th>Pad</th>
-          <th class="date">Last modified <a href="#" class="sort_arrow" >&uarr;</a><a href="#" class="sort_arrow" >&darr;</a></th>
-        </tr>
-        <tr>
-          <td><a href="#">My sport activites</a></td>
-          <td class="pad">No pad</td>
-          <td class="hidden-text date">Today at 10:51</td>
-        </tr>
-        <tr>
-          <td><a href="#">February reports</a></td>
-          <td class="pad"><a href="#">Pad</a></td>
-          <td class="hidden-text date">Yesterday</td>
-        </tr>
-        <tr>
-          <td><a href="#">Budget plan</a></td>
-          <td class="pad"><a href="#">Pad</a></td>
-          <td class="hidden-text date">2 days ago</td>
-        </tr>
-        <tr>
-          <td><a href="#">Visit Agenda for all customers</a></td>
-          <td class="pad"><a href="#">Pad</a></td>
-          <td class="hidden-text date">02 Feb. 2013</td>
-        </tr>
-        <tr>
-          <td><a href="#">Gifts</a></td>
-          <td class="pad"><a href="#">Pad</a></td>
-          <td class="hidden-text date">29 Jan. 2013</td>
-        </tr>
-        <tr>
-          <td><a href="#">Calendar events</a></td>
-          <td class="pad"><a href="#">Pad</a></td>
-          <td class="hidden-text date">29 Jan. 2013</td>
-        </tr>
-        <tr>
-          <td><a href="#">TV series</a></td>
-          <td class="pad"><a href="#">Pad</a></td>
-          <td class="hidden-text date">01 Dec. 2012</td>
-        </tr>
-        <tr>
-          <td><a href="#">Daily post</a></td>
-          <td class="pad"><a href="#">Pad</a></td>
-          <td class="hidden-text date">28 Nov. 2012</td>
-        </tr>
-      </table>
-      <a href="#" class="button">New note</a>
-      <div class="pagination">
-        <a href="#">1</a>
-        2
-        <a href="#">3</a>
-        <a href="#">4</a>
-      </div>
-    </div>
+      @yield('content')
     <hr class="footer" />
     <div class="footer">
       <div>Notejam: <strong>Laravel 5</strong> application</div>
