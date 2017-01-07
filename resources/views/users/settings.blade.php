@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.user')
+
+@section('title', 'Account Settings')
 
 @section('content')
   @if (session('settings-changed'))
