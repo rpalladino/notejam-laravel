@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('notes.all_notes');
 })->name('all_notes')->middleware('auth');
 
-
+// User routes
 Route::get('/forgot-password', 'User\ForgotPasswordController@showForgotPasswordForm')
      ->name('forgot-password');
 Route::post('/forgot-password', 'User\ForgotPasswordController@forgotPassword');
@@ -32,3 +32,8 @@ Route::get('/signout', 'User\SigninController@signout')
 Route::get('/signup', 'User\SignupController@showSignupForm')
      ->name('signup');
 Route::post('/signup', 'User\SignupController@signup');
+
+// Note routes
+Route::get('/notes/create', 'Note\CreateController@showCreateNoteForm')
+     ->name('create-note');
+Route::post('/notes/create', 'Note\CreateController@createNote');

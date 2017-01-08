@@ -50,7 +50,7 @@
        <td class="hidden-text date">28 Nov. 2012</td>
      </tr>
    </table>
-   <a href="#" class="button">New note</a>
+   <a href="{{ URL::route('create-note') }}" class="button">New note</a>
    <div class="pagination">
      <a href="#">1</a>
      2
