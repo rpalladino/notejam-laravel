@@ -29,4 +29,15 @@ class CreateTest extends TestCase
                  'text' => 'Buy milk'
              ]);
     }
+
+    /**
+     * Note can't be created by anonymous user
+     *
+     * @return void
+     */
+    public function testNoteCantBeCreatedByAnonymousUser()
+    {
+        $this->visit('/notes/create')
+             ->seeRouteIs('signin');
+    }
 }
