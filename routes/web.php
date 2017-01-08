@@ -13,10 +13,6 @@
 
 use App\User;
 
-Route::get('/', function () {
-    return view('notes.all_notes');
-})->name('all_notes')->middleware('auth');
-
 // User routes
 Route::get('/forgot-password', 'User\ForgotPasswordController@showForgotPasswordForm')
      ->name('forgot-password');
@@ -34,6 +30,7 @@ Route::get('/signup', 'User\SignupController@showSignupForm')
 Route::post('/signup', 'User\SignupController@signup');
 
 // Note routes
+Route::get('/', 'Note\ListController@allNotes')->name('all_notes');
 Route::get('/notes/create', 'Note\CreateController@showCreateNoteForm')
      ->name('create-note');
 Route::post('/notes/create', 'Note\CreateController@createNote');
