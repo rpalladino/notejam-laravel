@@ -8,11 +8,6 @@ use App\Note;
 
 class CreateController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function showCreateNoteForm()
     {
         return view('notes.create');

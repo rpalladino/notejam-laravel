@@ -13,24 +13,34 @@
 
 use App\User;
 
-// User routes
-Route::get('/forgot-password', 'User\ForgotPasswordController@showForgotPasswordForm')
-     ->name('forgot-password');
-Route::post('/forgot-password', 'User\ForgotPasswordController@forgotPassword');
-Route::get('/settings', 'User\SettingsController@showUserSettingsForm')
-     ->name('settings');
-Route::post('/settings', 'User\SettingsController@changeUserSettings');
-Route::get('/signin', 'User\SigninController@showSigninForm')
-     ->name('signin');
-Route::post('/signin', 'User\SigninController@signin');
-Route::get('/signout', 'User\SigninController@signout')
-     ->name('signout');
-Route::get('/signup', 'User\SignupController@showSignupForm')
-     ->name('signup');
-Route::post('/signup', 'User\SignupController@signup');
+// Guest routes
+Route::group(['namespace' => 'User'], function () {
+    Route::get('/signup', 'SignupController@showSignupForm')->name('signup');
+    Route::post('/signup', 'SignupController@signup');
 
-// Note routes
-Route::get('/', 'Note\ListController@allNotes')->name('all_notes');
-Route::get('/notes/create', 'Note\CreateController@showCreateNoteForm')
-     ->name('create-note');
-Route::post('/notes/create', 'Note\CreateController@createNote');
+    Route::get('/signin', 'SigninController@showSigninForm')->name('signin');
+    Route::post('/signin', 'SigninController@signin');
+
+    Route::get('/forgot-password', 'ForgotPasswordController@showForgotPasswordForm')
+         ->name('forgot-password');
+    Route::post('/forgot-password',
+     'ForgotPasswordController@forgotPassword');
+});
+
+// Authenticated user routes
+Route::group(['namespace' => 'User', 'middleware' => 'auth'], function () {
+    Route::get('/settings', 'SettingsController@showUserSettingsForm')
+         ->name('settings');
+    Route::post('/settings', 'SettingsController@changeUserSettings');
+
+    Route::get('/signout', 'SigninController@signout')->name('signout');
+});
+
+// Authenticated note routes
+Route::group(['namespace' => 'Note', 'middleware' => 'auth'], function () {
+    Route::get('/', 'ListController@allNotes')->name('all_notes');
+
+    Route::get('/notes/create', 'CreateController@showCreateNoteForm')
+         ->name('create-note');
+    Route::post('/notes/create', 'CreateController@createNote');
+});

@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the user settings form
      *
