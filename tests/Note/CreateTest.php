@@ -40,4 +40,21 @@ class CreateTest extends TestCase
         $this->visit('/notes/create')
              ->seeRouteIs('signin');
     }
+
+    /**
+     * Note can't be created if required fields are missing
+     *
+     * @return void
+     */
+    public function testNoteCantBeCreatedIfRequiredFieldsAreMissing()
+    {
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+             ->visit('/notes/create')
+             ->press('Save')
+             ->seeRouteIs('create-note')
+             ->see('The name field is required')
+             ->see('The text field is required');
+    }
 }

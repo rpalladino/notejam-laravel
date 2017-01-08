@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Note;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Note\CreateRequest;
 use App\Note;
-use Illuminate\Http\Request;
 
 class CreateController extends Controller
 {
@@ -18,7 +18,7 @@ class CreateController extends Controller
         return view('notes.create');
     }
 
-    public function createNote(Request $request)
+    public function createNote(CreateRequest $request)
     {
         $note = new Note();
         $note->name = $request->name;
