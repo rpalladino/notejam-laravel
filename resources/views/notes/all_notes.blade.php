@@ -11,7 +11,7 @@
      </tr>
   @foreach($notes as $note)
      <tr>
-         <td><a href="#">{{ $note->name }}</a></td>
+         <td><a href="{{ URL::route('note', ['id' => $note->id]) }}">{{ $note->name }}</a></td>
          <td class="pad">No pad</td>
          <td class="hidden-text date">
              {{ $note->created_at->diffForHumans() }}
