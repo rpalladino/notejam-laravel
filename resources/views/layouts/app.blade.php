@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="sixteen columns">
-      <h1 class="bold-header"><a href="#" class="header">note<span class="jam">jam:</span></a> <span> @yield('title')</span></h1>
+      <h1 class="bold-header"><a href="{{ URL::route('all_notes') }}" class="header">note<span class="jam">jam:</span></a> <span> @yield('title')</span></h1>
     </div>
     <div class="three columns">
       @include('partials.pads')
