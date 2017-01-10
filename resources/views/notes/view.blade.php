@@ -9,6 +9,6 @@
         {!! nl2br($note->text) !!}
     </p>
   </div>
-  <button type="button">Edit</button>
+  <a href="{{ URL::route('edit-note', ['id' => $note->id]) }}" class="button">Edit</a>
   <a href="#" class="delete-note">Delete it</a>
 @endsection

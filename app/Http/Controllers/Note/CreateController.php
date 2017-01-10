@@ -10,7 +10,7 @@ class CreateController extends Controller
 {
     public function showCreateNoteForm()
     {
-        return view('notes.create');
+        return view('notes.create')->with('note', new Note());
     }
 
     public function createNote(CreateRequest $request)

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'New note')
+@section('title', $note->name)
 
 @section('content')
     @include('partials.note_form')
