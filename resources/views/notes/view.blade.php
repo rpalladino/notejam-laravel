@@ -3,7 +3,7 @@
 @section('title', $note->name)
 
 @section('content')
-  <p class="hidden-text">Last edited at {{ $note->updated_at->diffForHumans() }}</p>
+  <p class="hidden-text">Last edited {{ $note->updated_at->diffForHumans() }}</p>
   <div class="note">
     <p>
         {!! nl2br($note->text) !!}
