@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Note;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Note\EditRequest;
 use App\Note;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class EditController extends Controller
         return view('notes.edit')->with('note', $note);
     }
 
-    public function updateNote(Request $request)
+    public function updateNote(EditRequest $request)
     {
         $note = Note::find($request->id);
         $note->name = $request->name;

@@ -52,4 +52,21 @@ class EditTest extends TestCase
              ->see('New name')
              ->see('New text');
     }
+
+    /**
+     * Note can't be edited if required fields are missing
+     *
+     * @return void
+     */
+    public function testNoteCantBeEditedIfRequiredFieldsAreMissing()
+    {
+        $this->actingAs($this->owner)
+             ->visit("/notes/{$this->note->id}/edit")
+             ->type('', 'name')
+             ->type('', 'text')
+             ->press('Save')
+             ->seePageIs("/notes/{$this->note->id}/edit")
+             ->see('The name field is required')
+             ->see('The text field is required');
+    }
 }
