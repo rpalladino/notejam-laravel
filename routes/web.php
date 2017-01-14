@@ -44,9 +44,9 @@ Route::group(['namespace' => 'Note', 'middleware' => 'auth'], function () {
          ->name('create-note');
     Route::post('/notes/create', 'CreateController@createNote');
 
-    Route::get('/notes/{id}', 'ViewController@viewNote')->name('note');
+    Route::get('/notes/{note}', 'ViewController@viewNote')->name('note');
 
-    Route::get('/notes/{id}/edit', 'EditController@showEditNoteForm')
+    Route::get('/notes/{note}/edit', 'EditController@showEditNoteForm')
          ->name('edit-note');
-    Route::post('/notes/{id}/edit', 'EditController@updateNote');
+    Route::post('/notes/{note}/edit', 'EditController@updateNote');
 });
