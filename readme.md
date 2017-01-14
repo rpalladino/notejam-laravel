@@ -2,9 +2,9 @@
 
 # Notejam: Laravel
 
-Notejam application implemented using `Laravel <http://laravel.com/>`_ framework.
+Notejam application implemented using [Laravel](http://laravel.com/)  framework.
 
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+[![](https://laravel.com/assets/img/components/logo-laravel.svg)](http://laravel.com/)
 
 Laravel version: 5.3
 
