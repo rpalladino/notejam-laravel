@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Http\Response;
 use App\User;
 use App\Note;
 
@@ -69,4 +70,18 @@ class EditTest extends TestCase
              ->see('The name field is required')
              ->see('The text field is required');
     }
+
+    /**
+     * Note can't be edited by not an owner
+     *
+     * @return void
+     */
+    public function testNoteCantBeEditedByNotAnOwner()
+    {
+        $notAnOwner = factory(User::class)->create();
+        $this->actingAs($notAnOwner)
+             ->get("/notes/{$this->note->id}/edit")
+             ->assertResponseStatus(Response::HTTP_FORBIDDEN);
+    }
+
 }
