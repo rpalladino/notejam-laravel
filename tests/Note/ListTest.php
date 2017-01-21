@@ -79,4 +79,66 @@ class ListTest extends TestCase
         $this->click('3')
              ->seeTotalElements('.notes .name', 5);
     }
+
+    /**
+     * Notes can be sorted by name
+     *
+     * @return void
+     */
+    public function testNotesCanBeSortedByName()
+    {
+        $attrs = ['user_id' => $this->user->id];
+        $notes = [
+            factory(Note::class)->create($attrs + ['name' => 'Date']),
+            factory(Note::class)->create($attrs + ['name' => 'Fig']),
+            factory(Note::class)->create($attrs + ['name' => 'Apple']),
+        ];
+
+        // ascending
+        $this->actingAs($this->user)
+             ->visit('/?order=name')
+             ->seeInElement('table.notes tr:nth-child(2) .name', 'Apple')
+             ->seeInElement('table.notes tr:nth-child(3) .name', 'Date')
+             ->seeInElement('table.notes tr:nth-child(4) .name', 'Fig');
+
+        // descending
+        $this->visit('/?order=-name')
+             ->seeInElement('table.notes tr:nth-child(2) .name', 'Fig')
+             ->seeInElement('table.notes tr:nth-child(3) .name', 'Date')
+             ->seeInElement('table.notes tr:nth-child(4) .name', 'Apple');
+    }
+
+    /**
+     * Notes can be sorted by name
+     *
+     * @return void
+     */
+    public function testNotesCanBeSortedByModifiedDate()
+    {
+        $attrs = ['user_id' => $this->user->id];
+        $notes = [
+            factory(Note::class)->create($attrs + [
+                'name' => 'Third', 'updated_at' => '2017-01-31 12:00:00'
+            ]),
+            factory(Note::class)->create($attrs + [
+                'name' => 'First', 'updated_at' => '2017-01-01 12:00:00'
+            ]),
+            factory(Note::class)->create($attrs + [
+                'name' => 'Second', 'updated_at' => '2017-01-15 12:00:00'
+            ]),
+        ];
+
+        // ascending
+        $this->actingAs($this->user)
+             ->visit('/?order=updated')
+             ->seeInElement('table.notes tr:nth-child(2) .name', 'First')
+             ->seeInElement('table.notes tr:nth-child(3) .name', 'Second')
+             ->seeInElement('table.notes tr:nth-child(4) .name', 'Third');
+
+        // descending
+        $this->visit('/?order=-updated')
+             ->seeInElement('table.notes tr:nth-child(2) .name', 'Third')
+             ->seeInElement('table.notes tr:nth-child(3) .name', 'Second')
+             ->seeInElement('table.notes tr:nth-child(4) .name', 'First');
+    }
 }

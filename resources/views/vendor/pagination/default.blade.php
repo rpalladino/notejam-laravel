@@ -6,7 +6,7 @@
                     @if ($page == $paginator->currentPage())
                         {{ $page }}
                     @else
-                        <a href="{{ $url }}">{{ $page }}</a>
+                        <a href="{{ $url }}&amp;order={{ Request::get('order', App\Http\Controllers\Note\ListController::DEFAULT_SORT_ORDER)}}">{{ $page }}</a>
                     @endif
                 @endforeach
             @endif
