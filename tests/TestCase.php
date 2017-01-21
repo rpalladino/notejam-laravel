@@ -22,4 +22,19 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    /**
+     * Verify the number of DOM elements.
+     *
+     * @param  string   $selector the DOM selector (jquery style)
+     * @param  int      $number   how many elements should be present in the DOM
+     *
+     * @return $this
+     */
+    public function seeTotalElements($selector, $total)
+    {
+        $this->assertCount($total, $this->crawler->filter($selector));
+
+        return $this;
+    }
 }

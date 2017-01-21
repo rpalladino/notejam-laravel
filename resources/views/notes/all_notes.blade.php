@@ -11,7 +11,7 @@
      </tr>
   @foreach($notes as $note)
      <tr>
-         <td><a href="{{ URL::route('note', ['id' => $note->id]) }}">{{ $note->name }}</a></td>
+         <td class="name"><a href="{{ URL::route('note', ['id' => $note->id]) }}">{{ $note->name }}</a></td>
          <td class="pad">No pad</td>
          <td class="hidden-text date">
              {{ $note->created_at->diffForHumans() }}
@@ -20,11 +20,6 @@
   @endforeach
    </table>
    <a href="{{ URL::route('create-note') }}" class="button">New note</a>
-   <!-- <div class="pagination">
-     <a href="#">1</a>
-     2
-     <a href="#">3</a>
-     <a href="#">4</a>
-   </div> -->
+   {{ $notes->links() }}
  </div>
 @endsection

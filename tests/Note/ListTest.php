@@ -18,13 +18,13 @@ class ListTest extends TestCase
     }
 
     /**
-     * All notes owned by user can be listed
+     * Notes owned by user can be listed
      *
      * @return void
      */
-    public function testAllNotesOwnedByUserCanBeListed()
+    public function testNotesOwnedByUserCanBeListed()
     {
-        $notesOwnedByUser = factory(Note::class, 10)->create([
+        $notesOwnedByUser = factory(Note::class, 3)->create([
             'user_id' => $this->user->id
         ]);
 
@@ -44,7 +44,7 @@ class ListTest extends TestCase
     {
         $notUser = factory(User::class)->create();
 
-        $notesNotOwnedByUser = factory(Note::class, 10)->create([
+        $notesNotOwnedByUser = factory(Note::class, 3)->create([
             'user_id' => $notUser->id
         ]);
 
@@ -53,5 +53,30 @@ class ListTest extends TestCase
         foreach($notesNotOwnedByUser as $note) {
             $this->dontSee($note->name);
         }
+    }
+
+    /**
+     * Notes are listed ten per page
+     *
+     * @return void
+     */
+    public function testNotesAreListedTenPerPage()
+    {
+        $notes = factory(Note::class, 25)->create([
+            'user_id' => $this->user->id
+        ]);
+
+        // View first 10 notes on page 1
+        $this->actingAs($this->user)
+             ->visit('/')
+             ->seeTotalElements('.notes .name', 10);
+
+        // View next 10 notes on page 2
+        $this->click('2')
+             ->seeTotalElements('.notes .name', 10);
+
+        // View last 5 notes on page 3
+        $this->click('3')
+             ->seeTotalElements('.notes .name', 5);
     }
 }
