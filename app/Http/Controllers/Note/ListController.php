@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class ListController extends Controller
 {
-    public function allNotes() {
-        $notes = Note::all();
+    public function allNotes(Request $request) {
+        $notes = $request->user()->notes;
         return view('notes.all_notes')->with('notes', $notes);
     }
 }

@@ -51,4 +51,12 @@ class User extends Authenticatable
         $this->password = Hash::make($newPassword);
         $this->save();
     }
+
+    /**
+     * Get the notes owned by the user.
+     */
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }
