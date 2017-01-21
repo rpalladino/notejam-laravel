@@ -19,11 +19,11 @@ class CreatePadTest extends TestCase
 
         $this->actingAs($user)
              ->visit('/pad/create')
-             ->type('Personal', 'name')
+             ->type('Recipes', 'name')
              ->press('Save')
              ->seeRouteIs('all_notes')
              ->see('Pad successfully created')
-             ->seeInElement('.pads', 'Personal')
-             ->seeInDatabase('pads', ['name' => 'Personal']);
+             ->seeInElement('.pads', 'Recipes')
+             ->seeInDatabase('pads', ['name' => 'Recipes']);
     }
 }

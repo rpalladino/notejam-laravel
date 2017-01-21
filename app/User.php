@@ -59,4 +59,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Note::class);
     }
+
+    /**
+     * Get the pads owned by the user.
+     */
+    public function pads()
+    {
+        return $this->hasMany(Pad::class);
+    }
 }
