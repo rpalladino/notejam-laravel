@@ -10,5 +10,5 @@
     </p>
   </div>
   <a href="{{ URL::route('edit-note', ['id' => $note->id]) }}" class="button">Edit</a>
-  <a href="#" class="delete-note">Delete it</a>
+  <a href="{{ URL::route('delete-note', ['id' => $note->id]) }}" class="delete-note">Delete it</a>
 @endsection
