@@ -60,3 +60,10 @@ Route::group(['namespace' => 'Note', 'middleware' => 'auth'], function () {
     Route::post('/notes/{note}/delete', 'DeleteController@deleteNote')
          ->middleware('can:delete,note');
 });
+
+// Authenticated pad routes
+Route::group(['namespace' => 'Pad'], function () {
+    Route::get('/pad/create', 'CreateController@showCreatePadForm')
+         ->name('create-pad');
+    Route::post('/pad/create', 'CreateController@createPad');
+});
