@@ -47,6 +47,7 @@
     <div class="thirteen columns content-area">
       @include('partials.alerts')
       @yield('content')
+    </div>
     <hr class="footer" />
     <div class="footer">
       <div>Notejam: <strong>Laravel 5</strong> application</div>
