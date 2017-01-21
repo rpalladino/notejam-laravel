@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use App\Note;
 use App\User;
 
-class ViewTest extends TestCase
+class ViewNoteTest extends TestCase
 {
     use DatabaseMigrations;
 

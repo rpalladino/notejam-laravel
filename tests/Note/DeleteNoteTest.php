@@ -5,7 +5,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Response;
 
-class DeleteTest extends TestCase
+class DeleteNoteTest extends TestCase
 {
     use DatabaseMigrations;
 

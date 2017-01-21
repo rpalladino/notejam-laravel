@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Note;
 use App\User;
 
-class ListTest extends TestCase
+class ListNotesTest extends TestCase
 {
     use DatabaseMigrations;
 
