@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Pad;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Pad\PadRequest as Request;
 use App\Pad;
 
 class EditController extends Controller

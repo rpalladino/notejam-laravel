@@ -4,7 +4,7 @@ namespace App\Http\Requests\Pad;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePadRequest extends FormRequest
+class PadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

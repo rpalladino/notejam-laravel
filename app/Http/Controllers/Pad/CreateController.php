@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Pad;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Pad\CreatePadRequest as Request;
+use App\Http\Requests\Pad\PadRequest as Request;
 use App\Pad;
 
 class CreateController extends Controller
