@@ -13,7 +13,7 @@ class NotesTableSeeder extends Seeder
     {
         $user = App\User::where(['email' => 'test@example.com'])->first();
 
-        factory(App\Note::class, 10)->create([
+        factory(App\Note::class, 50)->create([
             'user_id' => $user->id
         ]);
     }
