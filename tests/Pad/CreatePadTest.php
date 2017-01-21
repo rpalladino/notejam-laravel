@@ -8,6 +8,13 @@ class CreatePadTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp()
+    {
+        parent::setUp();
+        $this->user = factory(App\User::class)->create();
+        $this->actingAs($this->user);
+    }
+
     /**
      * Pad can be successfully created
      *
@@ -15,15 +22,23 @@ class CreatePadTest extends TestCase
      */
     public function testPadCanBeSuccessfullyCreated()
     {
-        $user = factory(App\User::class)->create();
-
-        $this->actingAs($user)
-             ->visit('/pad/create')
+        $this->visit('/pad/create')
              ->type('Recipes', 'name')
              ->press('Save')
              ->seeRouteIs('all_notes')
              ->see('Pad successfully created')
              ->seeInElement('.pads', 'Recipes')
              ->seeInDatabase('pads', ['name' => 'Recipes']);
+    }
+
+    /**
+     * Pad can't be created if required fields missing
+     */
+    public function testPadCantBeCreatedIfRequiredFieldsMissing()
+    {
+        $this->visit('/pad/create')
+             ->press('Save')
+             ->see('The name field is required')
+             ->seePageIs('/pad/create');
     }
 }
