@@ -55,6 +55,8 @@ Route::group(['namespace' => 'Note', 'middleware' => 'auth'], function () {
          ->middleware('can:update,note');
 
     Route::get('/notes/{note}/delete', 'DeleteController@showConfirmation')
-         ->name('delete-note');
-    Route::post('/notes/{note}/delete', 'DeleteController@deleteNote');
+         ->name('delete-note')
+         ->middleware('can:delete,note');
+    Route::post('/notes/{note}/delete', 'DeleteController@deleteNote')
+         ->middleware('can:delete,note');
 });
