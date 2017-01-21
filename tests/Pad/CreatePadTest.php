@@ -22,7 +22,7 @@ class CreatePadTest extends TestCase
      */
     public function testPadCanBeSuccessfullyCreated()
     {
-        $this->visit('/pad/create')
+        $this->visit('/pads/create')
              ->type('Recipes', 'name')
              ->press('Save')
              ->seeRouteIs('all_notes')
@@ -36,9 +36,9 @@ class CreatePadTest extends TestCase
      */
     public function testPadCantBeCreatedIfRequiredFieldsMissing()
     {
-        $this->visit('/pad/create')
+        $this->visit('/pads/create')
              ->press('Save')
              ->see('The name field is required')
-             ->seePageIs('/pad/create');
+             ->seePageIs('/pads/create');
     }
 }

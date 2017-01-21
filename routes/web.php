@@ -23,8 +23,7 @@ Route::group(['namespace' => 'User'], function () {
 
     Route::get('/forgot-password', 'ForgotPasswordController@showForgotPasswordForm')
          ->name('forgot-password');
-    Route::post('/forgot-password',
-     'ForgotPasswordController@forgotPassword');
+    Route::post('/forgot-password', 'ForgotPasswordController@forgotPassword');
 });
 
 // Authenticated user routes
@@ -62,8 +61,12 @@ Route::group(['namespace' => 'Note', 'middleware' => 'auth'], function () {
 });
 
 // Authenticated pad routes
-Route::group(['namespace' => 'Pad'], function () {
-    Route::get('/pad/create', 'CreateController@showCreatePadForm')
+Route::group(['namespace' => 'Pad', 'middleware' => 'auth'], function () {
+    Route::get('/pads/create', 'CreateController@showCreatePadForm')
          ->name('create-pad');
-    Route::post('/pad/create', 'CreateController@createPad');
+    Route::post('/pads/create', 'CreateController@createPad');
+
+    Route::get('/pads/{pad}/edit', 'EditController@showEditPadForm')
+         ->name('edit-pad');
+    Route::post('/pads/{pad}/edit', 'EditController@updatePad');
 });

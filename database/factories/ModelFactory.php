@@ -32,3 +32,12 @@ $factory->define(App\Note::class, function (Faker\Generator $faker) {
         }
     ];
 });
+
+$factory->define(App\Pad::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->realText(10),
+        'user_id' => function () {
+            return factory(App\User::class)->create()->id;
+        }
+    ];
+});
