@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Http\Response;
 
 class EditPadTest extends TestCase
 {
@@ -47,5 +48,22 @@ class EditPadTest extends TestCase
              ->press('Save')
              ->see('The name field is required')
              ->seePageIs("/pads/{$this->pad->id}/edit");
+    }
+
+    /**
+     * Pad can't be edited if not an owner
+     */
+    public function testPadCantBeEditedIfNotAnOwner()
+    {
+        $notOwner = factory(App\User::class)->create();
+
+        // Can't view the form
+        $this->actingAs($notOwner)
+             ->get("/pads/{$this->pad->id}/edit")
+             ->assertResponseStatus(Response::HTTP_FORBIDDEN);
+
+        // Can't update the pad
+        $this->post("/pads/{$this->pad->id}/edit")
+             ->assertResponseStatus(Response::HTTP_FORBIDDEN);
     }
 }

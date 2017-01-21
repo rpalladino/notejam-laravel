@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Pad extends Model
 {
     /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
