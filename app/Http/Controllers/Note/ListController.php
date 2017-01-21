@@ -19,7 +19,12 @@ class ListController extends Controller
             ->notes()
             ->orderBy($column, $direction)
             ->paginate(self::NOTES_PER_PAGE);
-        return view('notes.all_notes')->with('notes', $notes);
+
+        $total = Note::count();
+
+        return view('notes.all_notes')
+            ->with('notes', $notes)
+            ->with('title', "All Notes ({$total})");
     }
 
     /**

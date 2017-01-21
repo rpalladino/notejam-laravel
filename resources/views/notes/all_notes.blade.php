@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'All Notes')
+@section('title', $title)
 
 @section('content')
   <table class="notes">
