@@ -67,8 +67,8 @@ Route::group(['namespace' => 'Pad', 'middleware' => 'auth'], function () {
     Route::post('/pads/create', 'CreateController@createPad');
 
     Route::get('/pads/{pad}', 'ViewController@viewPad')
-         ->name('view-pad');
-        //  ->middleware('can:view,pad');
+         ->name('view-pad')
+         ->middleware('can:view,pad');
 
     Route::get('/pads/{pad}/edit', 'EditController@showEditPadForm')
          ->name('edit-pad')
