@@ -2,7 +2,7 @@
 <nav>
     <ul class="pads">
     @foreach ($pads as $pad)
-        <li><a href="#">{{ $pad->name }}</a></li>
+        <li><a href="{{ URL::route('view-pad', ['id' => $pad->id]) }}">{{ $pad->name }}</a></li>
     @endforeach
     </ul>
     <hr />

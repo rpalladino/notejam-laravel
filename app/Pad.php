@@ -33,4 +33,14 @@ class Pad extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the notes in the pad.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }
