@@ -71,4 +71,10 @@ Route::group(['namespace' => 'Pad', 'middleware' => 'auth'], function () {
          ->middleware('can:update,pad');
     Route::post('/pads/{pad}/edit', 'EditController@updatePad')
          ->middleware('can:update,pad');
+
+     Route::get('/pads/{pad}/delete', 'DeleteController@showConfirmation')
+          ->name('delete-pad')
+          ->middleware('can:delete,pad');
+     Route::post('/pads/{pad}/delete', 'DeleteController@deletePad')
+          ->middleware('can:delete,pad');
 });
