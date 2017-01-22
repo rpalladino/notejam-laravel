@@ -14,13 +14,14 @@ class ListController extends Controller
     public function listNotes(Request $request) {
         list($column, $direction) = $this->parseSortOrder($request);
 
+        $total = Note::count();
+
         $notes = $request
             ->user()
             ->notes()
+            ->with('pad')
             ->orderBy($column, $direction)
             ->paginate(self::NOTES_PER_PAGE);
-
-        $total = Note::count();
 
         return view('notes.list')
             ->with('notes', $notes)
