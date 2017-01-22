@@ -60,6 +60,27 @@ class CreateNoteTest extends TestCase
     }
 
     /**
+     * Note can't be added to another user's pad
+     *
+     * @return void
+     */
+    public function testNoteCantBeAddedToAnotherUsersPad()
+    {
+        $anotherUser = factory(App\User::class)->create();
+        $pad = factory(App\Pad::class)->create([
+            'user_id' => $anotherUser->id
+        ]);
+
+        $this->actingAs($this->owner)
+             ->post('/notes/create', [
+                 'name' => "Directions to wedding",
+                 'text' => "Take 85 to Saratoga",
+                 'pad' => $pad->id
+             ])
+             ->assertResponseStatus(403);
+    }
+
+    /**
      * Note can't be created by anonymous user
      *
      * @return void

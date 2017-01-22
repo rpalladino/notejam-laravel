@@ -4,7 +4,7 @@ namespace App\Http\Requests\Note;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class NoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,6 +13,10 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
+        if ($this->pad && ! $this->padBelongsToUser()) {
+            return false;
+        }
+
         return true;
     }
 
@@ -27,5 +31,16 @@ class CreateRequest extends FormRequest
             'name' => 'required',
             'text' => 'required'
         ];
+    }
+
+    /**
+     * Check if the given pad belongs to the current user
+     *
+     * @return boolean
+     */
+    protected function padBelongsToUser()
+    {
+        $criteria = ['id' => $this->pad];
+        return (boolean) $this->user()->pads()->where($criteria)->count();
     }
 }

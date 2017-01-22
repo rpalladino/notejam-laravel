@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Note;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Note\EditRequest;
+use App\Http\Requests\Note\NoteRequest as Request;
 use App\Note;
 
 class EditController extends Controller
@@ -13,7 +13,7 @@ class EditController extends Controller
         return view('notes.edit')->with('note', $note);
     }
 
-    public function updateNote(Note $note, EditRequest $request)
+    public function updateNote(Note $note, Request $request)
     {
         $note->name = $request->name;
         $note->text = $request->text;

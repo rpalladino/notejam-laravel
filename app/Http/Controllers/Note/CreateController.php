@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Note;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Note\CreateRequest;
+use App\Http\Requests\Note\NoteRequest as Request;
 use App\Note;
 
 class CreateController extends Controller
@@ -13,7 +13,7 @@ class CreateController extends Controller
         return view('notes.create')->with('note', new Note());
     }
 
-    public function createNote(CreateRequest $request)
+    public function createNote(Request $request)
     {
         $note = new Note();
         $note->name = $request->name;
