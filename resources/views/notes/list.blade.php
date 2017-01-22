@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $title)
+@section('title')
+    All Notes ({{ Request::user()->notes()->count() }})
+@endsection
 
 @section('content')
   <table class="notes">
