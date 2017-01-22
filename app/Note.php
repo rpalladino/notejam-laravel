@@ -13,6 +13,7 @@ class Note extends Model
      */
     protected $casts = [
         'user_id' => 'integer',
+        'pad_id' => 'integer'
     ];
 
     /**
@@ -24,8 +25,23 @@ class Note extends Model
         'name', 'text',
     ];
 
+    /**
+     * Get the user that the note belongs to.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the pad that the note belongs to.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function pad()
+    {
+        return $this->belongsTo(Pad::class);
     }
 }

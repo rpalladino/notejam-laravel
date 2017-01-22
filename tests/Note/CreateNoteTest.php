@@ -3,10 +3,17 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Pad;
 
 class CreateNoteTest extends TestCase
 {
     use DatabaseMigrations;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->owner =factory(App\User::class)->create();
+    }
 
     /**
      * Note can be successfully created
@@ -15,9 +22,7 @@ class CreateNoteTest extends TestCase
      */
     public function testNoteCanBeSuccessfullyCreated()
     {
-        $user = factory(App\User::class)->create();
-
-        $this->actingAs($user)
+        $this->actingAs($this->owner)
              ->visit('/notes/create')
              ->type('Things to do', 'name')
              ->type('Buy milk', 'text')
@@ -27,6 +32,30 @@ class CreateNoteTest extends TestCase
              ->seeInDatabase('notes', [
                  'name' => 'Things to do',
                  'text' => 'Buy milk'
+             ]);
+    }
+
+    /**
+     * Note can be added to a pad
+     *
+     * @return void
+     */
+    public function testNoteCanBeAddedToAPad()
+    {
+        $pad = factory(App\Pad::class)->create([
+            'name' => 'Recipes',
+            'user_id' => $this->owner->id
+        ]);
+
+        $this->actingAs($this->owner)
+             ->visit('/notes/create')
+             ->type("My Mom's Banana Bread", 'name')
+             ->type("Just ask her to make it!", 'text')
+             ->select($pad->id, 'pad')
+             ->press('Save')
+             ->seeInDatabase('notes', [
+                 'name' => "My Mom's Banana Bread",
+                 'pad_id' => $pad->id
              ]);
     }
 
@@ -48,9 +77,7 @@ class CreateNoteTest extends TestCase
      */
     public function testNoteCantBeCreatedIfRequiredFieldsAreMissing()
     {
-        $user = factory(App\User::class)->create();
-
-        $this->actingAs($user)
+        $this->actingAs($this->owner)
              ->visit('/notes/create')
              ->press('Save')
              ->seeRouteIs('create-note')

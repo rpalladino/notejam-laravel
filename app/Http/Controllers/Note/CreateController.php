@@ -19,6 +19,7 @@ class CreateController extends Controller
         $note->name = $request->name;
         $note->text = $request->text;
         $note->user()->associate($request->user());
+        $note->pad()->associate($request->pad);
         $note->save();
 
         return redirect()

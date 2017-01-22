@@ -10,11 +10,13 @@
   @include('partials.field_error', ['field' => 'text'])
 
   <label for="list">Select Pad</label>
-  <select id="list">
+  <select id="list" name="pad">
     <option value="0">--------</option>
-    <option value="1">Business</option>
-    <option value="2">Personal</option>
-    <option value="3">Other</option>
+    @foreach ($pads as $pad)
+        <option value="{{ $pad->id }}"{{ ($pad->id === $note->pad_id) ? ' selected="selected"' : '' }}>
+            {{ $pad->name }}
+        </option>
+    @endforeach
   </select>
 
   <input type="submit" value="Save">

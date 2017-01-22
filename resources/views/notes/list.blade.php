@@ -12,7 +12,13 @@
   @foreach($notes as $note)
      <tr>
          <td class="name"><a href="{{ URL::route('note', ['id' => $note->id]) }}">{{ $note->name }}</a></td>
-         <td class="pad">No pad</td>
+         <td class="pad">
+             @if ($note->pad)
+                {{ $note->pad->name }}
+             @else
+                No pad
+             @endif
+         </td>
          <td class="hidden-text date">
              {{ $note->updated_at->diffForHumans() }}
          </td>

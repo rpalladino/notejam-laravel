@@ -17,6 +17,7 @@ class EditController extends Controller
     {
         $note->name = $request->name;
         $note->text = $request->text;
+        $note->pad()->associate($request->pad);
         $note->save();
 
         return redirect()
