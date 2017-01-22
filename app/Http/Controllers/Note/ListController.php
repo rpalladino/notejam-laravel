@@ -11,7 +11,7 @@ class ListController extends Controller
     const NOTES_PER_PAGE = 10;
     const DEFAULT_SORT_ORDER = "-updated";
 
-    public function allNotes(Request $request) {
+    public function listNotes(Request $request) {
         list($column, $direction) = $this->parseSortOrder($request);
 
         $notes = $request
@@ -22,7 +22,7 @@ class ListController extends Controller
 
         $total = Note::count();
 
-        return view('notes.all_notes')
+        return view('notes.list')
             ->with('notes', $notes)
             ->with('title', "All Notes ({$total})");
     }

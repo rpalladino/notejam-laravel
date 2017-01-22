@@ -28,7 +28,7 @@ class DeleteController extends Controller
         $note->delete();
 
         return redirect()
-            ->route('all_notes')
+            ->route('list-notes')
             ->with('success', 'Note successfully deleted');
     }
 }

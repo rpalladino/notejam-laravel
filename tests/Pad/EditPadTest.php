@@ -31,7 +31,7 @@ class EditPadTest extends TestCase
              ->seeInField('name', $this->pad->name)
              ->type('Recipes', 'name')
              ->press('Save')
-             ->seeRouteIs('all_notes')
+             ->seeRouteIs('list-notes')
              ->seeInElement('.alert-success', 'Pad is successfully updated')
              ->seeInElement('.pads', 'Recipes')
              ->seeInDatabase('pads', ['name' => 'Recipes']);

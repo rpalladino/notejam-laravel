@@ -25,7 +25,7 @@ class SignupController extends Controller
         Auth::login($user);
 
         return redirect()
-            ->route('all_notes')
+            ->route('list-notes')
             ->with('success', 'Account successfully created!');
     }
 }

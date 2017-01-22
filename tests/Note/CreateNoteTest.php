@@ -22,7 +22,7 @@ class CreateNoteTest extends TestCase
              ->type('Things to do', 'name')
              ->type('Buy milk', 'text')
              ->press('Save')
-             ->seeRouteIs('all_notes')
+             ->seeRouteIs('list-notes')
              ->see('Note successfully created')
              ->seeInDatabase('notes', [
                  'name' => 'Things to do',

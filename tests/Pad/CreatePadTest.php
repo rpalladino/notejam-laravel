@@ -25,7 +25,7 @@ class CreatePadTest extends TestCase
         $this->visit('/pads/create')
              ->type('Recipes', 'name')
              ->press('Save')
-             ->seeRouteIs('all_notes')
+             ->seeRouteIs('list-notes')
              ->see('Pad successfully created')
              ->seeInElement('.pads', 'Recipes')
              ->seeInDatabase('pads', ['name' => 'Recipes']);

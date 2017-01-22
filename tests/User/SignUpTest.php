@@ -21,7 +21,7 @@ class SignUpTest extends TestCase
              ->type('a-bad-password', 'password')
              ->type('a-bad-password', 'password_confirmation')
              ->press('Sign Up')
-             ->seeRouteIs('all_notes')
+             ->seeRouteIs('list-notes')
              ->see('Account successfully created!')
              ->seeInDatabase('users', [
                  'email' => 'jsmith@example.com'

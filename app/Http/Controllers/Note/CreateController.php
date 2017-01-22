@@ -22,7 +22,7 @@ class CreateController extends Controller
         $note->save();
 
         return redirect()
-            ->route('all_notes')
+            ->route('list-notes')
             ->with('success', 'Note successfully created');
     }
 }

@@ -21,7 +21,7 @@ class CreateController extends Controller
         $pad->save();
 
         return redirect()
-            ->route('all_notes')
+            ->route('list-notes')
             ->with('success', 'Pad successfully created');
     }
 }

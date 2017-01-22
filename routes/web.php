@@ -37,7 +37,7 @@ Route::group(['namespace' => 'User', 'middleware' => 'auth'], function () {
 
 // Authenticated note routes
 Route::group(['namespace' => 'Note', 'middleware' => 'auth'], function () {
-    Route::get('/', 'ListController@allNotes')->name('all_notes');
+    Route::get('/', 'ListController@listNotes')->name('list-notes');
 
     Route::get('/notes/create', 'CreateController@showCreateNoteForm')
          ->name('create-note');

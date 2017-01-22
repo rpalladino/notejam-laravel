@@ -25,7 +25,7 @@ class SignInTest extends TestCase
              ->type('jsmith@example.com', 'email')
              ->type('secure-password', 'password')
              ->press('Sign In')
-             ->seeRouteIs('all_notes');
+             ->seeRouteIs('list-notes');
     }
 
     /**
