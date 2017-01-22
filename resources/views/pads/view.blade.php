@@ -1,5 +1,5 @@
 @extends('notes.list')
 
 @section('title')
-    {{ $pad->name }} ({{ $pad->notes()->count() }})
+    <a href="{{ URL::route('edit-pad', ['id' => $pad->id]) }}">{{ $pad->name }}</a> ({{ $pad->notes()->count() }})
 @endsection
